@@ -145,8 +145,9 @@ CMD ["npm", "start"]
 3. **Application Name**: Enter `node-beanstalk-docker-app`.
 4. **Platform**: Select **Docker**.
 5. **Upload your Code**:
+   - zip -r node-beanstalk-docker-app.zip .
    - Choose **Upload your code** and select the **Dockerfile** from your project folder.
-6. Click **Create Environment** and wait for the environment to launch.
+7. Click **Create Environment** and wait for the environment to launch.
 
 ---
 
