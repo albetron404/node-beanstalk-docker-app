@@ -235,3 +235,264 @@ CMD ["npm", "start"]
 ---
 
 This detailed guide ensures that Amit is fully prepared to deploy a **Node.js application on AWS Elastic Beanstalk using Docker** and **CodePipeline** for his DevOps mid-term exam.
+
+Here is a **logical, detailed, and structured step-by-step guide with form fill-ups** to help you excel in your **DevOps Implementation mid-term exam**.
+
+---
+
+# **Mid-Term Exam Study Guide: DevOps Implementation**
+
+---
+
+## **Task 1: Lock Down Browser – 10 Questions**
+
+### **Key Topics to Review:**
+- **CI/CD (Continuous Integration/Continuous Deployment):**
+  - Understand how **CI/CD pipelines** automate the build, test, and deployment processes.
+  - Know tools such as **AWS CodePipeline, Jenkins, and GitHub Actions**.
+
+- **GitHub Version Control**:
+  - How to create, clone, and work with repositories using `git` commands.
+  - Understand **branches, pull requests, and commits**.
+
+- **AWS Elastic Beanstalk**:
+  - Review how it manages the deployment of web applications and supports auto-scaling.
+
+- **Docker Concepts**:
+  - Understand containers, images, volumes, networks, and the role of **Docker Compose** in microservices.
+
+Use practice quizzes and example questions to **test your understanding** before the exam.
+
+---
+
+## **Task 2: Deploy HTML Code on AWS Elastic Beanstalk Using AWS CodePipeline**
+
+### **Step-by-Step Guide with Form Fill-ups**
+
+---
+
+### **Step 1: Create a GitHub Repository**
+1. **Go to GitHub** and click **New Repository**.
+   - **Repository Name**: `html-beanstalk-app`
+   - **Description**: `HTML page for AWS Elastic Beanstalk deployment.`
+   - **Visibility**: Choose **Public**.
+   - Check **Add a README file**.
+2. **Clone the repository** to your local machine:
+   ```bash
+   git clone <your-repo-url>
+   cd html-beanstalk-app
+   ```
+3. **Create an HTML page**:
+   ```bash
+   echo "<h1>Hello from AWS Elastic Beanstalk!</h1>" > index.html
+   ```
+4. **Commit and push your changes**:
+   ```bash
+   git add .
+   git commit -m "Initial commit"
+   git push origin master
+   ```
+
+---
+
+### **Step 2: Create a CodePipeline**
+
+1. **Go to AWS Console** > **CodePipeline** > **Create Pipeline**.
+
+2. **Pipeline Configuration**:
+   - **Pipeline Name**: `html-pipeline`
+   - **Service Role**: 
+     - Choose **Create New Service Role**.
+   - **Artifact Store**: 
+     - Use the **Default Location (S3)**.
+
+3. **Source Stage (GitHub)**:
+   - **Provider**: Select **GitHub**.
+   - **Connect GitHub**: Authorize your GitHub account.
+   - **Repository**: Select `html-beanstalk-app`.
+   - **Branch**: `master`.
+   - **Change Detection**: Use **Webhook** (for automatic updates).
+
+4. **Build Stage (Optional)**:
+   - If only HTML is used, **skip the build stage**.
+
+5. **Deploy Stage (Elastic Beanstalk)**:
+   - **Deploy Provider**: Select **Elastic Beanstalk**.
+   - **Application Name**: Create **html-beanstalk-app**.
+   - **Environment Name**: `beanstalk-env`.
+   - **Platform**: Choose **PHP** or **Node.js**.
+   - **Deployment Type**: **All at once** (for small apps).
+
+6. **Review the Pipeline**:
+   - Click **Create Pipeline**.
+
+7. **Test the Deployment**:
+   - Visit the **Elastic Beanstalk URL**:
+     - Example: `http://beanstalk-env.us-east-1.elasticbeanstalk.com`.
+
+---
+
+## **Task 3: Build and Deploy Docker Container for Web Page**
+
+---
+
+### **Step-by-Step Guide with Form Fill-ups**
+
+---
+
+### **Step 1: Create the HTML Page and Dockerfile**
+1. **Create a new folder** called `docker-web-app`.
+2. **Create an HTML page**:
+   - `index.html`:
+     ```html
+     <html>
+       <body>
+         <h1>Hello from Docker!</h1>
+       </body>
+     </html>
+     ```
+
+3. **Create a `Dockerfile`**:
+   - `Dockerfile`:
+     ```dockerfile
+     FROM nginx:latest
+     COPY ./index.html /usr/share/nginx/html/index.html
+     ```
+
+---
+
+### **Step 2: Build and Run the Docker Image**
+
+1. **Build the Docker Image**:
+   ```bash
+   cd docker-web-app
+   docker build -t my-web-app .
+   ```
+
+2. **Run the Docker Container**:
+   - **Form Fill-up**:
+     - **Image**: `my-web-app`
+     - **Port Mapping**: `80:80`
+   - Command:
+     ```bash
+     docker run -d -p 80:80 my-web-app
+     ```
+
+3. **Test the Web Application**:
+   - Open your browser and navigate to `http://localhost:80`.
+
+4. **Push the Image to DockerHub (Optional)**:
+   - **Login to DockerHub**:
+     ```bash
+     docker login
+     ```
+   - **Tag and Push the Image**:
+     ```bash
+     docker tag my-web-app <your-dockerhub-username>/my-web-app
+     docker push <your-dockerhub-username>/my-web-app
+     ```
+
+---
+
+## **Task 4: Use Docker Compose to Launch a Microservice Application**
+
+---
+
+### **Step-by-Step Guide with Form Fill-ups**
+
+---
+
+### **Step 1: Create the `docker-compose.yml` File**
+
+1. **Create a folder** called `microservice-app`.
+
+2. **Create the following folder structure**:
+   ```
+   /microservice-app
+     ├── docker-compose.yml
+     └── web/index.html
+   ```
+
+3. **Create the HTML Page**:
+   - `web/index.html`:
+     ```html
+     <html>
+       <body>
+         <h1>Hello from Docker Compose!</h1>
+       </body>
+     </html>
+     ```
+
+4. **Create the `docker-compose.yml` File**:
+   - `docker-compose.yml`:
+     ```yaml
+     version: '3.8'
+     services:
+       web:
+         image: nginx:latest
+         ports:
+           - "80:80"
+         volumes:
+           - ./web:/usr/share/nginx/html
+       db:
+         image: postgres:latest
+         environment:
+           POSTGRES_USER: admin
+           POSTGRES_PASSWORD: password
+           POSTGRES_DB: mydb
+         ports:
+           - "5432:5432"
+     ```
+
+---
+
+### **Step 2: Launch the Microservice Application**
+
+1. **Run Docker Compose**:
+   ```bash
+   cd microservice-app
+   docker-compose up -d
+   ```
+
+2. **Verify the Running Containers**:
+   ```bash
+   docker ps
+   ```
+
+3. **Test the Web Service**:
+   - Open your browser and go to `http://localhost:80`.
+
+4. **Connect to PostgreSQL**:
+   ```bash
+   psql -h localhost -U admin -d mydb
+   ```
+   - **Password**: `password`
+
+5. **Stop and Remove the Services**:
+   ```bash
+   docker-compose down
+   ```
+
+---
+
+## **Additional Tips and Troubleshooting**
+
+### **CodePipeline and Elastic Beanstalk:**
+- **Monitor the pipeline** through CodePipeline to detect failures.
+- **Elastic Beanstalk Logs**: Use the console to review logs if the application fails to deploy.
+
+### **Docker Troubleshooting**:
+- Check logs:
+  ```bash
+  docker logs <container-id>
+  ```
+- Remove unused images to free space:
+  ```bash
+  docker image prune
+  ```
+
+---
+
+## **Summary**
+
+This guide provides detailed, logical steps and form fill-ups to help you complete your exam tasks smoothly. Practice deploying web applications using **Elastic Beanstalk and Docker**, and get comfortable with **Docker Compose** for multi-container applications. Let me know if you need further help or clarifications. Best of luck! 🚀
